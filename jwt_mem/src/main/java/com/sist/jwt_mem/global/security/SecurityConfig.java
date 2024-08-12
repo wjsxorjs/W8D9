@@ -3,6 +3,7 @@ package com.sist.jwt_mem.global.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -32,6 +33,7 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
         .requestMatchers("/api/member/**").permitAll()
+        .requestMatchers(HttpMethod.POST,"/api/member/login").permitAll()
         .requestMatchers(
             new AntPathRequestMatcher("/**")).permitAll()) //사용자가 요정한 요청 정보를 확인하여 url을 확인 후 허용 
             .csrf(csrf -> {

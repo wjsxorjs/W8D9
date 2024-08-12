@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import Header from "./components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,17 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="header">
-          <nav className="navbar">
-            <Link href="/">홈</Link>
-            <Link href="/members">회원목록</Link>
-            <Link href="/bbs">게시판</Link>
-          </nav>
-          <div className="fr">
-            <Link href="/members/signin">로그인</Link>
-            <Link href="/members/signup">회원가입</Link>
-          </div>
-        </header>
+        <Header />
         {children}
       </body>
     </html>

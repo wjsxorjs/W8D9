@@ -1,7 +1,9 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "../../page.module.css";
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function page() {
 
@@ -14,8 +16,42 @@ export default function page() {
     justifyContent: 'flex-start'
   }
 
+  const [member, setMember] = useState({});
+
+  const router = useRouter();
+
+  const API_URL = "http://localhost:8080/api/member/login"
+
 
   function signIn(){ // 비동기식 통신을 이용하여 서버에게 값 전달
+    
+    // axios.post(
+    //   API_URL,
+    //   JSON.stringify(member),
+      // {
+      //   withCredentials: true,
+      //   headers:{'Content-Type':'application/json'},
+      // },
+    // ).then((res)=>{
+    //   console.log(res.data);
+    // });
+
+    axios({
+      url: API_URL,
+      method: "post",
+      params: member,
+      withCredentials: true,
+      headers:{'Content-Type':'application/json'},
+    }).then((res)=>{
+      console.log(res.data);
+      if(res.status != null){
+        alert("로그인 성공!");
+        router.push("/")
+      } else{
+        alert("로그인 실패!");
+      }
+    })
+
 
   }
 
@@ -24,6 +60,10 @@ export default function page() {
   }
 
   const handleChange = (e) => { // useState에 저장
+    // 아이디 또는 비밀번호에서 입력할 때마다 호출되는 곳이다.
+    const {name, value} = e.target;
+    // console.log({...member, [name]:value});
+    setMember({...member, [name]:value});
 
   }
 

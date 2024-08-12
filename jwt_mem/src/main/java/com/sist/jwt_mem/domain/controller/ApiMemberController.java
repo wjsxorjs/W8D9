@@ -40,6 +40,8 @@ public class ApiMemberController {
         
         // 파라미터로 전달된 member의 mId값을 가지고 검색
 
+        System.out.println("!!!!!!!!!!!!!!! MVO.MID: "+mvo.getMId());
+
         if(mvo.getMId() != null){
             
             Member member = m_service.memInfo(mvo.getMId(), mvo.getMPw()); // 로그인 정보가 불일치하다면 반환값인 member은 null이 된다.
