@@ -100,3 +100,27 @@ a {
     color-scheme: dark;
   }
 }
+
+
+/* header 관련 css */
+.header {
+  display: flex;
+  justify-content: space-between; /*항목들 사이에 공간 분배*/
+  align-items: center;
+  background-color: #a9f9a9;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar, .fr{
+  padding: 20px;
+}
+
+.navbar a, .fr a{
+  margin-right: 10px;
+  text-decoration: none;
+  color: #5a5aff;
+  font-size: 17px;
+  font-weight: bold;
+}
