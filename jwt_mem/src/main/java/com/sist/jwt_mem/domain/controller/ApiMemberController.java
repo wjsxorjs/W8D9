@@ -40,7 +40,6 @@ public class ApiMemberController {
         
         // 파라미터로 전달된 member의 mId값을 가지고 검색
 
-        System.out.println("!!!!!!!!!!!!!!! MVO.MID: "+mvo.getMId());
 
         if(mvo.getMId() != null){
             
@@ -54,7 +53,7 @@ public class ApiMemberController {
                 ResponseCookie cookie = ResponseCookie.from("accessToken",member.getAccessToken())
                                                       .path("/")
                                                       .sameSite("none") // 같은 사이트에서도 허용하나? 아니
-                                                      .httpOnly(true)   // http 사용 시에만
+                                                      .httpOnly(false)   // http 사용 시에만
                                                       .secure(true)
                                                       .build();
                 // 만든 쿠키를 클라이언트에게 줘야한다.
@@ -63,7 +62,7 @@ public class ApiMemberController {
                 cookie =  ResponseCookie.from("refreshToken",member.getRefreshToken())
                                         .path("/")
                                         .sameSite("none") // 같은 사이트에서도 허용하나? 아니
-                                        .httpOnly(true)   // http 사용 시에만
+                                        .httpOnly(false)   // http 사용 시에만
                                         .secure(true)
                                         .build();
 

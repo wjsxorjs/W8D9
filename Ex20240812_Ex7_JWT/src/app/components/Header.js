@@ -1,11 +1,22 @@
+"use client"
 
-import React from 'react'
+import Cookies from "js-cookie";
 import Link from "next/link";
-import { cookies } from 'next/headers';
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
 
 export default function Header() {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get("accessToken");
+  
+  const c_path = usePathname();
+  const [accessToken, setAccessToken] = useState('');
+
+  
+  useEffect(()=>{
+    const token = Cookies.get('accessToken');
+    const token2 = Cookies.get('refreshToken');
+    setAccessToken(token);
+  },[c_path]);
 
   return (
     <header className="header">
